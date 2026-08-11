@@ -143,25 +143,22 @@
     <!-- 4. LISTA DE CUPONES -->
     
     <!-- CUPÓN 1 -->
-    <div class="card">
-      <div class="card-title">10% de Descuento en Audio y Electrónica</div>
-      <div>Cupón: <span class="code-badge">AUDIO10</span></div>
-      <button class="btn-copiar" onclick="copiarYRedirigir('AUDIO10', 'https://mercadolibre.com.mx/tu-link-afiliado-1', 'msg1')">
-        COPIAR CUPÓN E IR A LA OFERTA
-      </button>
-      <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-    </div>
+<div class="card">
+  <div class="card-title">10% de Descuento General</div>
+  
+  <!-- AQUÍ ESTÁ EL CAMBIO: agregamos 'code-blurred' dentro del class -->
+  <div>
+    <span id="code-1" class="code-badge code-blurred">OFERTA10</span>
+  </div>
+  <span class="tap-hint">🔒 Toca para revelar y copiar</span>
 
-    <!-- CUPÓN 2 -->
-    <div class="card">
-      <div class="card-title">$200 OFF en Compras Mayores a $1,000</div>
-      <div>Cupón: <span class="code-badge">CUPON200</span></div>
-      <button class="btn-copiar" onclick="copiarYRedirigir('CUPON200', 'https://mercadolibre.com.mx/tu-link-afiliado-2', 'msg2')">
-        COPIAR CUPÓN E IR A LA OFERTA
-      </button>
-      <div id="msg2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-    </div>
-
+  <button class="btn-copiar" onclick="revelarCopiarYRedirigir('OFERTA10', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg1', 'code-1')">
+    REVELAR, COPIAR E IR A MERCADO LIBRE
+  </button>
+  
+  <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+</div>
+    
     <!-- 5. COMUNIDAD -->
     <div class="extra-section">
       <a href="https://whatsapp.com/tu-canal" class="btn-extra" target="_blank">💬 Únete al Canal de WhatsApp</a>
