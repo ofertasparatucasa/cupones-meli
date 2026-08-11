@@ -187,6 +187,40 @@
       line-height: 1.4;
       margin: 0;
     }
+
+    /* Estilos del contenedor de pestañas */
+.tabs-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background-color: #e0e0e0;
+  color: #555;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background-color: #2d3277;
+  color: #ffffff;
+}
+
+/* Ocultar/Mostrar contenido de las pestañas */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active-content {
+  display: block;
+}
   </style>
 </head>
 <body>
@@ -385,6 +419,24 @@
         window.location.href = linkAfiliado;
       }
     }
+
+    function cambiarPestana(evento, idPestana) {
+  // 1. Ocultar todas las secciones de contenido
+  var contenidos = document.getElementsByClassName("tab-content");
+  for (var i = 0; i < contenidos.length; i++) {
+    contenidos[i].classList.remove("active-content");
+  }
+
+  // 2. Desactivar el estilo de todos los botones
+  var botones = document.getElementsByClassName("tab-btn");
+  for (var j = 0; j < botones.length; j++) {
+    botones[j].classList.remove("active");
+  }
+
+  // 3. Mostrar la pestaña seleccionada y activar su botón
+  document.getElementById(idPestana).classList.add("active-content");
+  evento.currentTarget.classList.add("active");
+}
   </script>
 
 </body>
