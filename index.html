@@ -20,6 +20,11 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
+    <!-- TARJETA DE FECHA AUTOMÁTICA -->
+<div class="fecha-card">
+  📅 <span id="texto-fecha">Cargando cupones de hoy...</span>
+</div>
+    
     /* 2. Caja de Instrucciones */
     .instrucciones-card {
       background: #ffffff;
@@ -137,6 +142,19 @@
       margin-bottom: 8px;
     }
   </style>
+  /* Tarjeta de Fecha Actualizada */
+.fecha-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  color: #2d3277;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
 </head>
 <body>
 
@@ -263,5 +281,21 @@
     }
   </script>
 
+  <!-- SCRIPT PARA FECHA AUTOMÁTICA -->
+<script>
+  (function() {
+    var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
+    var hoy = new Date().toLocaleDateString('es-MX', opciones);
+    
+    // Capitaliza la primera letra (ej. "martes" -> "Martes")
+    hoy = hoy.charAt(0).toUpperCase() + hoy.slice(1);
+    
+    var elementoFecha = document.getElementById('texto-fecha');
+    if (elementoFecha) {
+      elementoFecha.textContent = "Cupones vigentes hoy: " + hoy;
+    }
+  })();
+</script>
+  
 </body>
 </html>
