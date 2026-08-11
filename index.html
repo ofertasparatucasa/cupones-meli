@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cupones y Ofertas Mercado Libre</title>
+  <title>Cupones Mercado Libre</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f5f7; color: #333; padding: 12px; }
@@ -170,22 +170,31 @@
   </div>
 
   <!-- SCRIPT DE COPIA AUTOMÁTICA -->
-  <script>
-    function copiarYRedirigir(cupon, linkAfiliado, idMsg) {
-      var msg = document.getElementById(idMsg);
-      
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(cupon).then(function() {
-          if (msg) msg.style.display = "block";
-          setTimeout(function() { window.location.href = linkAfiliado; }, 700);
-        }).catch(function() {
-          window.location.href = linkAfiliado;
-        });
-      } else {
-        window.location.href = linkAfiliado;
-      }
+<script>
+  function revelarCopiarYRedirigir(cupon, linkAfiliado, idMsg, idCode) {
+    var msg = document.getElementById(idMsg);
+    var codeElement = document.getElementById(idCode);
+    
+    // 1. Remueve el efecto borroso para mostrar el código
+    if (codeElement) {
+      codeElement.classList.remove('code-blurred');
     }
-  </script>
+    
+    // 2. Copia al portapapeles y redirige a Mercado Libre
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(cupon).then(function() {
+        if (msg) msg.style.display = "block";
+        setTimeout(function() { 
+          window.location.href = linkAfiliado; 
+        }, 700);
+      }).catch(function() {
+        window.location.href = linkAfiliado;
+      });
+    } else {
+      window.location.href = linkAfiliado;
+    }
+  }
+</script>
 
 </body>
 </html>
