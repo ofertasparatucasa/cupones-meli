@@ -222,11 +222,54 @@
       </div>
     </div>
 
-    <!-- BOTÓN DESTACADO JBL -->
-    <a href="https://meli.la/2aV3uKc" class="btn-jbl-destacado" target="_blank">
-      🔊 VER LISTA DE BOCINAS JBL ORIGINALES
-    </a>
+    <!-- NAVEGACIÓN POR PESTAÑAS -->
+<div class="tabs-container">
+  <button class="tab-btn active" onclick="cambiarPestana(event, 'cupones-generales')">🏷️ Generales</button>
+  <button class="tab-btn" onclick="cambiarPestana(event, 'cupones-bancarios')">💳 Bancarios</button>
+</div>
 
+<!-- SECCIÓN 1: CUPONES GENERALES -->
+<div id="cupones-generales" class="tab-content active-content">
+  
+  <!-- Aquí van tus tarjetas de cupones generales -->
+  <div class="card">
+    <div class="card-title">10% de Descuento General</div>
+    <div><span id="code-1" class="code-badge code-blurred">OFERTA10</span></div>
+    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
+    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('OFERTA10', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg1', 'code-1')">
+      REVELAR, COPIAR E IR A MERCADO LIBRE
+    </button>
+    <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+  </div>
+
+</div>
+
+<!-- SECCIÓN 2: CUPONES BANCARIOS -->
+<div id="cupones-bancarios" class="tab-content">
+  
+  <!-- Tarjeta Bancaria: BBVA -->
+  <div class="card">
+    <div class="card-title">🏦 BBVA: 15% de Bonificación</div>
+    <div><span id="code-b1" class="code-badge code-blurred">BBVA2026</span></div>
+    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
+    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('BBVA2026', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg-b1', 'code-b1')">
+      REVELAR, COPIAR E IR A MERCADO LIBRE
+    </button>
+    <div id="msg-b1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+  </div>
+
+  <!-- Tarjeta Bancaria: Citibanamex -->
+  <div class="card">
+    <div class="card-title">🏦 Citibanamex: $200 OFF en MSI</div>
+    <div><span id="code-b2" class="code-badge code-blurred">BNMX10</span></div>
+    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
+    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('BNMX10', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg-b2', 'code-b2')">
+      REVELAR, COPIAR E IR A MERCADO LIBRE
+    </button>
+    <div id="msg-b2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+  </div>
+
+</div>
     <!-- LISTA DE CUPONES GENERALES -->
     
     <!-- CUPÓN 1 -->
@@ -289,6 +332,11 @@
       <div id="msg2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
     </div>
 
+      <!-- BOTÓN DESTACADO JBL -->
+    <a href="https://meli.la/2aV3uKc" class="btn-jbl-destacado" target="_blank">
+      🔊 VER LISTA DE BOCINAS JBL ORIGINALES
+    </a>
+    
     <!-- COMUNIDAD -->
     <div class="extra-section">
       <a href="https://whatsapp.com/tu-canal" class="btn-extra" target="_blank">💬 Únete al Canal de WhatsApp</a>
