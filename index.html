@@ -393,27 +393,66 @@
       }
     })();
 
-    // 2. Script para desenfoque, copia y redirección
-    function revelarCopiarYRedirigir(cupon, linkAfiliado, idMsg, idCode) {
-      var msg = document.getElementById(idMsg);
-      var codeElement = document.getElementById(idCode);
-      
-      if (codeElement) {
-        codeElement.classList.remove('code-blurred');
-      }
-      
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(cupon).then(function() {
-          if (msg) msg.style.display = "block";
-          setTimeout(function() { 
-            window.location.href = linkAfiliado; 
-          }, 700);
-        }).catch(function() {
-          window.location.href = linkAfiliado;
-        });
-      } else {
+    <script>
+  // Función para registrar clic y actualizar contador
+  function registrarClic(idCupon) {
+    // Usa CounterAPI gratuito para registrar el clic
+    fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}/up`)
+      .then(response => response.json())
+      .then(data => {
+        var el = document.getElementById('count-' + idCupon);
+        if (el) el.textContent = data.count + " clics";
+      })
+      .catch(err => console.log(err));
+  }
+
+  // Función para cargar los clics al abrir la página
+  function cargarContadores(idCupon) {
+    fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}`)
+      .then(response => response.json())
+      .then(data => {
+        var el = document.getElementById('count-' + idCupon);
+        if (el) el.textContent = (data.count || 0) + " clics";
+      })
+      .catch(() => {
+        var el = document.getElementById('count-' + idCupon);
+        if (el) el.textContent = "0 clics";
+      });
+  }
+
+  // Modificación de la función principal
+  function revelarCopiarYRedirigir(cupon, linkAfiliado, idMsg, idCode, idCupon) {
+    var msg = document.getElementById(idMsg);
+    var codeElement = document.getElementById(idCode);
+    
+    // 1. Suma el clic en el contador
+    registrarClic(idCupon);
+
+    // 2. Revela el código borroso
+    if (codeElement) {
+      codeElement.classList.remove('code-blurred');
+    }
+    
+    // 3. Copia y redirige
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(cupon).then(function() {
+        if (msg) msg.style.display = "block";
+        setTimeout(function() { 
+          window.location.href = linkAfiliado; 
+        }, 700);
+      }).catch(function() {
         window.location.href = linkAfiliado;
-      }
+      });
+    } else {
+      window.location.href = linkAfiliado;
+    }
+  }
+
+  // Carga inicial de contadores al abrir la página
+  document.addEventListener("DOMContentLoaded", function() {
+    cargarContadores('cupon-10off');
+    cargarContadores('cupon-200off');
+  });
     }
 
     function cambiarPestana(evento, idPestana) {
