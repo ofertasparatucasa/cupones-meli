@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cupones y Ofertas Mercado Libre</title>
   
-  <!-- AQUÍ VAN TODOS LOS ESTILOS (DENTRO DEL HEAD) -->
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f5f7; color: #333; padding: 12px; }
@@ -112,7 +111,32 @@
       box-shadow: 0 4px 10px rgba(255, 85, 0, 0.25);
     }
 
-    /* 5. Tarjetas y Efecto Borroso */
+    /* 5. Pestañas */
+    .tabs-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      background-color: #e0e0e0;
+      color: #555;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background-color: #2d3277;
+      color: #ffffff;
+    }
+    .tab-content { display: none; }
+    .tab-content.active-content { display: block; }
+
+    /* 6. Tarjetas de Cupones */
     .card { background: #fff; border: 2px dashed #ffe600; border-radius: 12px; padding: 15px; margin-bottom: 15px; text-align: center; }
     .card-title { font-size: 15px; font-weight: bold; margin-bottom: 6px; }
     
@@ -133,6 +157,14 @@
     .code-blurred {
       filter: blur(6px) !important;
       opacity: 0.6;
+    }
+
+    .click-count-box {
+      font-size: 11px;
+      color: #d32f2f;
+      font-weight: bold;
+      margin-top: 2px;
+      margin-bottom: 6px;
     }
 
     .tap-hint {
@@ -158,7 +190,7 @@
 
     .msg-exito { color: #2e7d32; font-size: 13px; font-weight: bold; margin-top: 8px; display: none; }
 
-    /* 6. Redes / Canales */
+    /* 7. Redes / Canales */
     .extra-section { margin-top: 20px; text-align: center; }
     .btn-extra {
       display: block;
@@ -173,54 +205,19 @@
       margin-bottom: 8px;
     }
 
-    /* 7. Disclaimer Legal (Pie de página) */
+    /* 8. Disclaimer Legal */
     .footer-disclaimer {
       margin-top: 30px;
       padding: 15px 10px;
       border-top: 1px solid #e0e0e0;
       text-align: center;
     }
-
     .footer-disclaimer p {
       font-size: 11px;
       color: #888888;
       line-height: 1.4;
       margin: 0;
     }
-
-    /* Estilos del contenedor de pestañas */
-.tabs-container {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 15px;
-}
-
-.tab-btn {
-  flex: 1;
-  padding: 10px;
-  background-color: #e0e0e0;
-  color: #555;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.tab-btn.active {
-  background-color: #2d3277;
-  color: #ffffff;
-}
-
-/* Ocultar/Mostrar contenido de las pestañas */
-.tab-content {
-  display: none;
-}
-
-.tab-content.active-content {
-  display: block;
-}
   </style>
 </head>
 <body>
@@ -256,222 +253,185 @@
       </div>
     </div>
 
-    <!-- NAVEGACIÓN POR PESTAÑAS -->
-<div class="tabs-container">
-  <button class="tab-btn active" onclick="cambiarPestana(event, 'cupones-generales')">🏷️ Generales</button>
-  <button class="tab-btn" onclick="cambiarPestana(event, 'cupones-bancarios')">💳 Bancarios</button>
-</div>
-
-<!-- SECCIÓN 1: CUPONES GENERALES -->
-<div id="cupones-generales" class="tab-content active-content">
-  
-  <!-- Aquí van tus tarjetas de cupones generales -->
-  <div class="card">
-    <div class="card-title">10% COMPRA MIN $500 TOPE $63</div>
-    <div><span id="code-1" class="code-badge code-blurred">MOCHILAFULL</span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('MOCHILAFULL', 'https://mercadolibre.com/sec/2DDvfhV', 'msg1', 'code-1')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-   <div class="card">
-    <div class="card-title">12% COMPRA MIN $1100 TOPE $165</div>
-    <div><span id="code-1" class="code-badge code-blurred">APROVECHABACK</span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('APROVECHABACK', 'https://mercadolibre.com/sec/2DDvfhV', 'msg1', 'code-1')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-   <div class="card">
-    <div class="card-title">$350 EN COMPRA MIN DE $3500</div>
-    <div><span id="code-1" class="code-badge code-blurred">AHORROBACK</span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('AHORROBACK', 'https://mercadolibre.com/sec/2DDvfhV', 'msg1', 'code-1')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-   <div class="card">
-    <div class="card-title">14% COMPRA MIN $5000 TOPE $875</div>
-    <div><span id="code-1" class="code-badge code-blurred">CLASEYCOMPRA</span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('CLASEYCOMPRA', 'https://mercadolibre.com/sec/2DDvfhV', 'msg1', 'code-1')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-   <div class="card">
-    <div class="card-title">$1000 EN COMPRA MIN DE $9000</div>
-    <div><span id="code-1" class="code-badge code-blurred">ESCOLARMELI</span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('ESCOLARMELI', 'https://mercadolibre.com/sec/2DDvfhV', 'msg1', 'code-1')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-</div>
-
-<!-- SECCIÓN 2: CUPONES BANCARIOS -->
-<div id="cupones-bancarios" class="tab-content">
-  
-  <!-- Tarjeta Bancaria: BANORTE -->
-  <div class="card">
-    <div class="card-title">🏦 BANORTE: 10% de Bonificación MAX $3000 ACTIVAR EN WEB O APP BANORTE</div>
-    <div><span id="code-b1" class="code-badge code-blurred"></span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('', 'https://mercadolibre.com/sec/2DDvfhV', 'msg-b1', 'code-b1')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg-b1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-  <!-- Tarjeta Bancaria: AMERICAN EXPRESS -->
-  <div class="card">
-    <div class="card-title">🏦 AMERICAN EXPRESS: $1500 BONIFICACION en MSI ACTIVAR EN WEB O APP A.E.</div>
-    <div><span id="code-b2" class="code-badge code-blurred"></span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('', 'https://mercadolibre.com/sec/2DDvfhV', 'msg-b2', 'code-b2')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg-b2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-   <!-- Tarjeta Bancaria: SCOTIABANK -->
-  <div class="card">
-    <div class="card-title">🏦 SCOTIABANK: 5% CASHBACK TOPE $300 A MSI ACTIVAR EN O APP SCOTIAMOVIL</div>
-    <div><span id="code-b2" class="code-badge code-blurred"></span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('', 'https://mercadolibre.com/sec/2DDvfhV', 'msg-b2', 'code-b2')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg-b2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-
-   <!-- Tarjeta Bancaria: DIDICARD -->
-  <div class="card">
-    <div class="card-title">🏦 DIDICARD: 10% CASHBACK TOPE $500 en MSI ACTIVAR EN APP DIDI</div>
-    <div><span id="code-b2" class="code-badge code-blurred"></span></div>
-    <span class="tap-hint">🔒 Toca para revelar y copiar</span>
-    <button class="btn-copiar" onclick="revelarCopiarYRedirigir('', 'https://mercadolibre.com/sec/2DDvfhV', 'msg-b2', 'code-b2')">
-      COPIAR E IR A MERCADO LIBRE
-    </button>
-    <div id="msg-b2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
-  </div>
-</div>
-   
-      <!-- BOTÓN DESTACADO JBL -->
-    <a href="https://meli.la/2aV3uKc" class="btn-jbl-destacado" target="_blank">
+    <!-- BOTÓN DESTACADO JBL -->
+    <a href="https://mercadolibre.com.mx/tu-link-afiliado-lista-jbl" class="btn-jbl-destacado" target="_blank">
       🔊 VER LISTA DE BOCINAS JBL ORIGINALES
     </a>
-    
 
-    <!-- DESCARGO DE RESPONSABILIDAD / DISCLAIMER -->
+    <!-- NAVEGACIÓN POR PESTAÑAS -->
+    <div class="tabs-container">
+      <button class="tab-btn active" onclick="cambiarPestana(event, 'cupones-generales')">🏷️ Generales</button>
+      <button class="tab-btn" onclick="cambiarPestana(event, 'cupones-bancarios')">💳 Bancarios</button>
+    </div>
+
+    <!-- PESTAÑA 1: GENERALES -->
+    <div id="cupones-generales" class="tab-content active-content">
+      
+      <!-- CUPÓN GENERAL 1 -->
+      <div class="card">
+        <div class="card-title">10% de Descuento General</div>
+        <div>
+          <span id="code-1" class="code-badge code-blurred">OFERTA10</span>
+        </div>
+        <div class="click-count-box">
+          🔥 Utilizado <span id="count-cupon-10off">Cargando...</span>
+        </div>
+        <span class="tap-hint">🔒 Toca para revelar y copiar</span>
+        <button class="btn-copiar" onclick="revelarCopiarYRedirigir('OFERTA10', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg1', 'code-1', 'cupon-10off')">
+          REVELAR, COPIAR E IR A MERCADO LIBRE
+        </button>
+        <div id="msg1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+      </div>
+
+      <!-- CUPÓN GENERAL 2 -->
+      <div class="card">
+        <div class="card-title">$200 OFF en Compras Mayores a $1,000</div>
+        <div>
+          <span id="code-2" class="code-badge code-blurred">CUPON200</span>
+        </div>
+        <div class="click-count-box">
+          🔥 Utilizado <span id="count-cupon-200off">Cargando...</span>
+        </div>
+        <span class="tap-hint">🔒 Toca para revelar y copiar</span>
+        <button class="btn-copiar" onclick="revelarCopiarYRedirigir('CUPON200', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg2', 'code-2', 'cupon-200off')">
+          REVELAR, COPIAR E IR A MERCADO LIBRE
+        </button>
+        <div id="msg2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+      </div>
+
+    </div>
+
+    <!-- PESTAÑA 2: BANCARIOS -->
+    <div id="cupones-bancarios" class="tab-content">
+      
+      <!-- CUPÓN BANCARIO 1 -->
+      <div class="card">
+        <div class="card-title">🏦 BBVA: 15% de Bonificación</div>
+        <div>
+          <span id="code-b1" class="code-badge code-blurred">BBVA2026</span>
+        </div>
+        <div class="click-count-box">
+          🔥 Utilizado <span id="count-cupon-bbva">Cargando...</span>
+        </div>
+        <span class="tap-hint">🔒 Toca para revelar y copiar</span>
+        <button class="btn-copiar" onclick="revelarCopiarYRedirigir('BBVA2026', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg-b1', 'code-b1', 'cupon-bbva')">
+          REVELAR, COPIAR E IR A MERCADO LIBRE
+        </button>
+        <div id="msg-b1" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+      </div>
+
+      <!-- CUPÓN BANCARIO 2 -->
+      <div class="card">
+        <div class="card-title">🏦 Citibanamex: $200 OFF en MSI</div>
+        <div>
+          <span id="code-b2" class="code-badge code-blurred">BNMX10</span>
+        </div>
+        <div class="click-count-box">
+          🔥 Utilizado <span id="count-cupon-citibanamex">Cargando...</span>
+        </div>
+        <span class="tap-hint">🔒 Toca para revelar y copiar</span>
+        <button class="btn-copiar" onclick="revelarCopiarYRedirigir('BNMX10', 'https://mercadolibre.com.mx/tu-link-afiliado-general', 'msg-b2', 'code-b2', 'cupon-citibanamex')">
+          REVELAR, COPIAR E IR A MERCADO LIBRE
+        </button>
+        <div id="msg-b2" class="msg-exito">¡Cupón copiado! Redirigiendo...</div>
+      </div>
+
+    </div>
+
+    <!-- COMUNIDAD -->
+    <div class="extra-section">
+      <a href="https://whatsapp.com/tu-canal" class="btn-extra" target="_blank">💬 Únete al Canal de WhatsApp</a>
+    </div>
+
+    <!-- DISCLAIMER LEGAL -->
     <footer class="footer-disclaimer">
       <p>Este sitio web es un canal independiente de difusión de ofertas y cupones. No formamos parte ni tenemos relación directa con Mercado Libre o MercadoLibre, S. de R.L. de C.V. Como participantes de programas de afiliados, podemos recibir una pequeña comisión por las compras realizadas a través de los enlaces de referidos, sin ningún costo extra para el usuario. Todos los nombres, marcas y logotipos son propiedad de sus respectivos dueños.</p>
     </footer>
 
-  </div> <!-- Cierre del container -->
+  </div>
 
-  <!-- SCRIPTS AL FINAL DEL BODY -->
   <script>
-    // 1. Script para calcular la fecha automática
+    // 1. Script para Fecha Automática
     (function() {
       var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
       var hoy = new Date().toLocaleDateString('es-MX', opciones);
       hoy = hoy.charAt(0).toUpperCase() + hoy.slice(1);
-      
       var elementoFecha = document.getElementById('texto-fecha');
       if (elementoFecha) {
         elementoFecha.textContent = "Cupones vigentes hoy: " + hoy;
       }
     })();
 
-    <script>
-  // Función para registrar clic y actualizar contador
-  function registrarClic(idCupon) {
-    // Usa CounterAPI gratuito para registrar el clic
-    fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}/up`)
-      .then(response => response.json())
-      .then(data => {
-        var el = document.getElementById('count-' + idCupon);
-        if (el) el.textContent = data.count + " clics";
-      })
-      .catch(err => console.log(err));
-  }
-
-  // Función para cargar los clics al abrir la página
-  function cargarContadores(idCupon) {
-    fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}`)
-      .then(response => response.json())
-      .then(data => {
-        var el = document.getElementById('count-' + idCupon);
-        if (el) el.textContent = (data.count || 0) + " clics";
-      })
-      .catch(() => {
-        var el = document.getElementById('count-' + idCupon);
-        if (el) el.textContent = "0 clics";
-      });
-  }
-
-  // Modificación de la función principal
-  function revelarCopiarYRedirigir(cupon, linkAfiliado, idMsg, idCode, idCupon) {
-    var msg = document.getElementById(idMsg);
-    var codeElement = document.getElementById(idCode);
-    
-    // 1. Suma el clic en el contador
-    registrarClic(idCupon);
-
-    // 2. Revela el código borroso
-    if (codeElement) {
-      codeElement.classList.remove('code-blurred');
-    }
-    
-    // 3. Copia y redirige
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(cupon).then(function() {
-        if (msg) msg.style.display = "block";
-        setTimeout(function() { 
-          window.location.href = linkAfiliado; 
-        }, 700);
-      }).catch(function() {
-        window.location.href = linkAfiliado;
-      });
-    } else {
-      window.location.href = linkAfiliado;
-    }
-  }
-
-  // Carga inicial de contadores al abrir la página
-  document.addEventListener("DOMContentLoaded", function() {
-    cargarContadores('cupon-10off');
-    cargarContadores('cupon-200off');
-  });
-    }
-
+    // 2. Script para Cambiar Pestañas
     function cambiarPestana(evento, idPestana) {
-  // 1. Ocultar todas las secciones de contenido
-  var contenidos = document.getElementsByClassName("tab-content");
-  for (var i = 0; i < contenidos.length; i++) {
-    contenidos[i].classList.remove("active-content");
-  }
+      var contenidos = document.getElementsByClassName("tab-content");
+      for (var i = 0; i < contenidos.length; i++) {
+        contenidos[i].classList.remove("active-content");
+      }
+      var botones = document.getElementsByClassName("tab-btn");
+      for (var j = 0; j < botones.length; j++) {
+        botones[j].classList.remove("active");
+      }
+      document.getElementById(idPestana).classList.add("active-content");
+      evento.currentTarget.classList.add("active");
+    }
 
-  // 2. Desactivar el estilo de todos los botones
-  var botones = document.getElementsByClassName("tab-btn");
-  for (var j = 0; j < botones.length; j++) {
-    botones[j].classList.remove("active");
-  }
+    // 3. Script para Contador de Clics (CounterAPI)
+    function registrarClic(idCupon) {
+      fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}/up`)
+        .then(response => response.json())
+        .then(data => {
+          var el = document.getElementById('count-' + idCupon);
+          if (el) el.textContent = data.count + " clics";
+        })
+        .catch(err => console.log(err));
+    }
 
-  // 3. Mostrar la pestaña seleccionada y activar su botón
-  document.getElementById(idPestana).classList.add("active-content");
-  evento.currentTarget.classList.add("active");
-}
+    function cargarContadores(idCupon) {
+      fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}`)
+        .then(response => response.json())
+        .then(data => {
+          var el = document.getElementById('count-' + idCupon);
+          if (el) el.textContent = (data.count || 0) + " clics";
+        })
+        .catch(() => {
+          var el = document.getElementById('count-' + idCupon);
+          if (el) el.textContent = "0 clics";
+        });
+    }
+
+    // 4. Script para Revelar, Copiar y Redirigir
+    function revelarCopiarYRedirigir(cupon, linkAfiliado, idMsg, idCode, idCupon) {
+      var msg = document.getElementById(idMsg);
+      var codeElement = document.getElementById(idCode);
+      
+      registrarClic(idCupon);
+
+      if (codeElement) {
+        codeElement.classList.remove('code-blurred');
+      }
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(cupon).then(function() {
+          if (msg) msg.style.display = "block";
+          setTimeout(function() { 
+            window.location.href = linkAfiliado; 
+          }, 700);
+        }).catch(function() {
+          window.location.href = linkAfiliado;
+        });
+      } else {
+        window.location.href = linkAfiliado;
+      }
+    }
+
+    // Cargar los contadores al iniciar la página
+    document.addEventListener("DOMContentLoaded", function() {
+      cargarContadores('cupon-10off');
+      cargarContadores('cupon-200off');
+      cargarContadores('cupon-bbva');
+      cargarContadores('cupon-citibanamex');
+    });
   </script>
 
 </body>
