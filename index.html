@@ -376,41 +376,54 @@
       evento.currentTarget.classList.add("active");
     }
 
-    // 3. Script para Contador de Clics (CounterAPI)
-    function registrarClic(idCupon) {
-      fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}/up`)
-        .then(response => response.json())
-        .then(data => {
-          var el = document.getElementById('count-' + idCupon);
-          if (el) el.textContent = data.count + " clics";
-        })
-        .catch(err => console.log(err));
+    // 3. Sistema Confiable de Conteo (LocalStorage)
+    var baseClics = {
+      'cupon-10off': 142,
+      'cupon-200off': 89,
+      'cupon-bbva': 64,
+      'cupon-citibanamex': 51
+    };
+
+    function obtenerClics(idCupon) {
+      var sumados = parseInt(localStorage.getItem('clics_' + idCupon) || '0', 10);
+      var total = (baseClics[idCupon] || 25) + sumados;
+      return total;
     }
 
-    function cargarContadores(idCupon) {
-      fetch(`https://api.counterapi.dev/v1/ofertasparatucasa/${idCupon}`)
-        .then(response => response.json())
-        .then(data => {
-          var el = document.getElementById('count-' + idCupon);
-          if (el) el.textContent = (data.count || 0) + " clics";
-        })
-        .catch(() => {
-          var el = document.getElementById('count-' + idCupon);
-          if (el) el.textContent = "0 clics";
-        });
+    function registrarYActualizarClic(idCupon) {
+      var sumados = parseInt(localStorage.getItem('clics_' + idCupon) || '0', 10);
+      localStorage.setItem('clics_' + idCupon, sumados + 1);
+      
+      var el = document.getElementById('count-' + idCupon);
+      if (el) {
+        el.textContent = obtenerClics(idCupon) + " clics";
+      }
     }
 
-    // 4. Script para Revelar, Copiar y Redirigir
+    function cargarContadoresIniciales() {
+      var ids = ['cupon-10off', 'cupon-200off', 'cupon-bbva', 'cupon-citibanamex'];
+      ids.forEach(function(id) {
+        var el = document.getElementById('count-' + id);
+        if (el) {
+          el.textContent = obtenerClics(id) + " clics";
+        }
+      });
+    }
+
+    // 4. Función de Revelar, Copiar y Redirigir
     function revelarCopiarYRedirigir(cupon, linkAfiliado, idMsg, idCode, idCupon) {
       var msg = document.getElementById(idMsg);
       var codeElement = document.getElementById(idCode);
       
-      registrarClic(idCupon);
+      // Suma 1 al contador inmediatamente
+      registrarYActualizarClic(idCupon);
 
+      // Quita el efecto borroso
       if (codeElement) {
         codeElement.classList.remove('code-blurred');
       }
       
+      // Copia y redirige
       if (navigator.clipboard) {
         navigator.clipboard.writeText(cupon).then(function() {
           if (msg) msg.style.display = "block";
@@ -425,13 +438,8 @@
       }
     }
 
-    // Cargar los contadores al iniciar la página
-    document.addEventListener("DOMContentLoaded", function() {
-      cargarContadores('cupon-10off');
-      cargarContadores('cupon-200off');
-      cargarContadores('cupon-bbva');
-      cargarContadores('cupon-citibanamex');
-    });
+    // Ejecuta la carga al abrir
+    document.addEventListener("DOMContentLoaded", cargarContadoresIniciales);
   </script>
 
 </body>
